@@ -5,9 +5,9 @@ This repository contains a pair trading engine implemented in Python. Pair tradi
 
 ## Key Features and Highlights
 
--Automated pair selection based on correlation analysis
--Signal generation using statistical measures
--Trade execution capabilities
+-'Automated pair selection based on correlation analysis'
+-'Signal generation using statistical measures'
+
 ## Installation
 
 To use this project, you'll need to have the following dependencies installed:
