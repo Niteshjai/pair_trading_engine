@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import yfinance as yf
 
+# List of tickers in the S&P 100 index
 sp100_tickers = [
     'AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AIG', 'AMD', 'AMGN', 'AMT', 'AMZN',
     'AVGO', 'AXP', 'BA', 'BAC', 'BIIB', 'BK', 'BKNG', 'BLK', 'BMY', 'BRK-B',
@@ -17,8 +18,15 @@ sp100_tickers = [
 ]
 
 def collect_data():
-    period='5Y'
+    period = '5Y'  # Download 5 years of daily data
+
+    # Download daily closing prices for all SP100 tickers
     stock_data = yf.download(sp100_tickers, period=period, interval='1d')['Close']
-    log_prices=np.log(stock_data)
+
+    # Compute log prices (useful for many financial time series models)
+    log_prices = np.log(stock_data)
+
+    # Save to CSV for later use
     log_prices.to_csv('log_prices.csv')
-    
+
+    return log_prices
