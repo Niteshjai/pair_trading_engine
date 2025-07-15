@@ -1,5 +1,12 @@
 # Pairs Trading Backtest
 
+## Description
+This repository contains a pair trading engine implemented in Python. Pair trading is a market-neutral trading strategy that matches a long position with a short position in two highly correlated instruments, aiming to profit from the relative price movements between the two. This pair trading engine automates the process of identifying suitable pairs, generating trading signals, and executing trades.
+
+## Key Features and Highlights
+Automated pair selection based on correlation analysis
+Signal generation using statistical measures
+Trade execution capabilities
 ## Installation
 
 To use this project, you'll need to have the following dependencies installed:
