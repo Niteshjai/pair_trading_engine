@@ -8,31 +8,38 @@ This project implements a statistical arbitrage strategy using cointegrated stoc
 
 ```
 .
+├── data.py         # Collect 5 years of daily closing price data for all S&P 100 companies using yfinance.
 ├── notebook.py     # Identifies cointegrated pairs and OU process parameters
 ├── backtest.py     # Runs trading simulation and plots signals
 ├── report.py       # Computes Sharpe, drawdown, and performance summary
-├── data.py       # Computes Sharpe, drawdown, and performance summary
+
 ```
 
 ---
 
 ## ⚙️ How It Works
 
-### 1. **Cointegration Detection (`notebook.py`)**
+### 1. **Data Collection (`data.py`)**
+
+* Utilizes pandas, numpy, and yfinance for data collection and processing.
+*  Computes the natural logarithm of stock prices to prepare for time-series analysis.
+* Saves the log-transformed stock prices as a CSV file named log_prices.csv.
+  
+### 2. **Cointegration Detection (`notebook.py`)**
 
 * Applies the Engle-Granger test to find cointegrated pairs of stocks.
 * Estimates spread using linear regression and hedge ratio.
 * Fits an Ornstein-Uhlenbeck process to model mean reversion.
 * Returns pair list sorted by half-life of reversion.
 
-### 2. **Strategy Backtest (`backtest.py`)**
+### 3. **Strategy Backtest (`backtest.py`)**
 
 * Computes rolling z-scores of the spread.
 * Generates long/short/exit signals based on z-score thresholds.
 * Simulates PnL with transaction costs.
 * Visualizes z-score and positions.
 
-### 3. **Performance Reporting (`report.py`)**
+### 4. **Performance Reporting (`report.py`)**
 
 * Calculates:
 
@@ -69,7 +76,6 @@ This will run cointegration detection, simulate trades, and print performance me
 
 ## 📌 Notes
 
-* Requires a `data.py` file with a `collect_data()` function.
 * Z-score entry/exit thresholds and window length are configurable in `backtest.py`.
 * Strategy assumes daily data and 252 trading days per year for Sharpe calculation.
 
